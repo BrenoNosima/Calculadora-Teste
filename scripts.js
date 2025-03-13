@@ -25,3 +25,13 @@ document.addEventListener("keydown", function(event) {
     calculateResult();
   }
 })
+
+function focarDisplay() {
+  document.querySelector("#display").focus();
+}
+
+window.onload = focarDisplay; 
+
+document.querySelectorAll("button").forEach(button => {
+  button.addEventListener("click", focarDisplay); 
+});

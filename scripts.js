@@ -7,19 +7,34 @@ function limpaTela(){
   document.querySelector('#display').value = ""
 }
 
-function calculateResult(){
-  const valorImput = document.querySelector('#display').value
-  document.querySelector('#display').value = eval(valorImput)
+function calculateResult() {
+  const valorInput = document.querySelector('#display').value;
+
+  try {
+    if (!/^[\d+\-*/(). ]+$/.test(valorInput)) {  // regex 0-9 Expressões Num 
+      throw new Error("Entrada inválida");
+    }
+
+    const resultado = new Function(`return ${valorInput}`)();
+
+    document.querySelector('#display').value = resultado;
+  } catch (error) {
+    document.querySelector('#display').value = "Error";
+  }
 }
 
-function apagaUm(){
-  const valorImput = document.querySelector('#display').value
-  document.querySelector('#display').value = display.value.slice(0, -1);
+function apagaUm() {
+  const display = document.querySelector('#display');
+  display.value = display.value.slice(0, -1);
 }
-function invert(){
-  const valorImput = document.querySelector('#display').value
-  document.querySelector('#display').value = valorImput * -1
+
+function invert() {
+  const display = document.querySelector('#display');
+  if (display.value !== "") {
+    display.value = parseFloat(display.value) * -1;
+  }
 }
+
 document.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
     calculateResult();

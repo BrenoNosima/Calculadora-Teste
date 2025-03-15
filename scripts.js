@@ -46,6 +46,7 @@ function focarDisplay() {
 }
 
 window.onload = focarDisplay; 
+window.onload = document.querySelector("#display").setAttribute("autocomplete", "off");
 
 document.querySelectorAll("button").forEach(button => {
   button.addEventListener("click", focarDisplay); 
